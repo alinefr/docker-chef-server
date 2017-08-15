@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-EXPOSE 80 443
+EXPOSE 8888
 MAINTAINER TrueAbility Ops <ops@trueability.com>
 VOLUME /var/opt
 WORKDIR /

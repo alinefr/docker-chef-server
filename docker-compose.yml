@@ -4,13 +4,13 @@ services:
         build:
             context: .
             args:
-                WITH_MANAGE: 1
+              WITH_MANAGE: 1
         image: trueability/chef-server:dev
         environment:
-            EXTERNAL_URL: "https://localhost"
+          EXTERNAL_URL: 'https://192.168.99.2'
+          EXTERNAL_PORT: '8888'
         volumes:
-            - "./tmp/data:/var/opt"
+            - "/data/chef-server/data:/var/opt"
         privileged: true
         ports:
-            - "80:80"
-            - "443:443"
+            - "8888:8888"
