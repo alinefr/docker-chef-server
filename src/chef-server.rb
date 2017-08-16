@@ -1,18 +1,12 @@
-# THIS FILE WILL BE OVERWRITTEN ON CONTAINER START
-#
-# persistent customizations should be made in the local override file:
-#
-#   /var/opt/opscode/etc/chef-server-local.rb
-#
-
-require 'uri'
+# THIS FILE WILL BE OVERWRITTEN ON CONTAINER START # # persistent customizations should be made in the local override file: # #   /var/opt/opscode/etc/chef-server-local.rb # require 'uri'
 _uri = ::URI.parse(ENV['EXTERNAL_URL'] || 'https://127.0.0.1/')
-_port = ENV['EXTERNAL_PORT'] || _uri.default_port
 
 if _uri.port == _uri.default_port
-    api_fqdn _uri.hostname
+  api_fqdn _uri.hostname
 else
-    api_fqdn "#{_uri.hostname}:#{_uri.port}"
+  api_fqdn "#{_uri.hostname}:#{_uri.port}"
+else
+  api_fqdn "#{_uri.hostname}:#{_uri.port}"
 end
 
 bookshelf['external_url'] = _uri.to_s
@@ -21,11 +15,8 @@ nginx['enable_non_ssl'] = true
 nginx['url'] = _uri.to_s
 nginx['x_forwarded_proto'] = _uri.scheme
 opscode_erchef['base_resource_url'] = _uri.to_s
-bookshelf['vip_port'] = _port
-nginx['ssl_port'] = _port
 
 _local = '/var/opt/opscode/etc/chef-server-local.rb'
-if File.exist?(_local)
-    instance_eval(File.read(_local), _local)
+if File.exists?(_local)
+  instance_eval(File.read(_local), _local)
 end
-
