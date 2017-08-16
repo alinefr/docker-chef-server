@@ -1,4 +1,11 @@
-# THIS FILE WILL BE OVERWRITTEN ON CONTAINER START # # persistent customizations should be made in the local override file: # #   /var/opt/opscode/etc/chef-server-local.rb # require 'uri'
+# THIS FILE WILL BE OVERWRITTEN ON CONTAINER START
+#
+# persistent customizations should be made in the local override file:
+#
+#   /var/opt/opscode/etc/chef-server-local.rb
+#
+
+require 'uri'
 _uri = ::URI.parse(ENV['EXTERNAL_URL'] || 'https://127.0.0.1/')
 
 if _uri.port == _uri.default_port
