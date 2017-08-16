@@ -5,8 +5,6 @@ if _uri.port == _uri.default_port
   api_fqdn _uri.hostname
 else
   api_fqdn "#{_uri.hostname}:#{_uri.port}"
-else
-  api_fqdn "#{_uri.hostname}:#{_uri.port}"
 end
 
 bookshelf['external_url'] = _uri.to_s
